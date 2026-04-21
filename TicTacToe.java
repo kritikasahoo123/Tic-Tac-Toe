@@ -1,31 +1,36 @@
 public class TicTacToe {
 
+    static char[][] board = {
+        {'-', '-', '-'},
+        {'-', '-', '-'},
+        {'-', '-', '-'}
+    };
+
     /**
      * Entry point of the program.
-     * Demonstrates slot-to-index conversion using a sample slot value.
+     * Tests the validation logic using sample row and column values.
      */
     public static void main(String[] args) {
-        int slot = 7;
-
-        System.out.println("Row: " + getRowFromSlot(slot));
-        System.out.println("Column: " + getColFromSlot(slot));
+        System.out.println(isValidMove(1, 1));
     }
 
     /**
-     * Converts slot number into row index using zero-based indexing.
-     * Input: Slot number (1–9)
-     * Output: Row index (0–2)
+     * Checks if the given row and column are within bounds
+     * and if the target cell is empty.
+     * Input: Row, Column
+     * Output: true if valid, false otherwise.
      */
-    static int getRowFromSlot(int slot) {
-        return (slot - 1) / 3;
-    }
+    static boolean isValidMove(int row, int col) {
+        // Check bounds
+        if (row < 0 || row > 2 || col < 0 || col > 2) {
+            return false;
+        }
 
-    /**
-     * Converts slot number into column index using modulo operation.
-     * Input: Slot number (1–9)
-     * Output: Column index (0–2)
-     */
-    static int getColFromSlot(int slot) {
-        return (slot - 1) % 3;
+        // Check if cell is empty
+        if (board[row][col] != '-') {
+            return false;
+        }
+
+        return true;
     }
 }
